@@ -1,20 +1,44 @@
-// DominikEladChess.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+
+#define ROWS 8
+#define COLS 8
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	char board[COLS][ROWS + 1] = {
+		{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r', '\n'},
+		{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', '\n'},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '\n'},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '\n'},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '\n'},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '\n'},
+		{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P', '\n'},
+		{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R', ' '}
+	};
+	std::string input;
+
+	while (input != "exit")
+	{
+		for (int i = 0; i < ROWS; ++i) 
+		{
+			for (int j = 0; j < COLS; ++j) 
+			{
+				std::cout << board[i][j] << ' ';
+			}
+			std::cout << std::endl;
+		}
+
+		std::cout << "Enter Move" ;
+		std::cin >> input;
+		board[(input[3] - 49)][input[2] - 97] = board[(input[1] - 49)][input[0] - 97];
+		board[(input[1] - 49)][input[0] - 97] = ' ';
+	}
+	
+
+	return 0;
+	
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
